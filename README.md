@@ -130,20 +130,10 @@ git push origin main
 | Command | What it does |
 | --- | --- |
 | `git status` | Shows modified, untracked, or staged files.
-
- |
 | `git add .` | Stages all current changes for the next commit.
-
- |
 | `git commit -m "msg"` | Saves a local snapshot of your staged changes.
-
- |
 | `git push origin main` | Uploads all local commits to the live GitHub repository.
-
- |
 | `git pull origin main` | Downloads and merges the latest updates from GitHub to your local machine.
-
- |
 
 ```
 
