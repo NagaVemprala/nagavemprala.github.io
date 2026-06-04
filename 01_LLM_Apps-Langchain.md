@@ -1,5 +1,3 @@
-Here is the cleanly formatted Markdown (`.md`) file converted from your HTML source. It strips away the hardcoded portfolio styling while preserving the code syntax structures so that it renders perfectly on GitHub Pages (via Jekyll or standard GitHub Markdown rendering).
-
 ```markdown
 # LLM Orchestration with LangChain
 
