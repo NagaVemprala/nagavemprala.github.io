@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Naga</title>
+    <title>Naga Vemprala Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/e05271ed15.js" crossorigin="anonymous"></script>
 </head>
@@ -130,6 +130,7 @@ The NSF seeks educational opportunities for economically disadvantaged and acade
                     <a href="https://www.up.edu/" target="_blank"><i class="fa-solid fa-eye"></i></a>
                 </div>
             </div>
+            
             <div class="work">
                 <img src="Images/Langchain.png"/> 
                 <div class="layer">
@@ -143,26 +144,20 @@ The NSF seeks educational opportunities for economically disadvantaged and acade
     </div>
 </div>
 
-
 <script>
-	var tablinks = document.getElementsByClassName("tab-links");
-	var tabcontents = document.getElementsByClassName("tab-contents");
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents = document.getElementsByClassName("tab-contents");
 
-	function opentab(tabname) {
-		for (tablink of tablinks) {
-			tablink.classList.remove("active-link");
-		}
-		for (tabcontent of tabcontents) {
-			tabcontent.classList.remove("active-tab");
-		}
-		event.currentTarget.classList.add("active-link");
-		document.getElementById(tabname).classList.add("active-tab");
-
-	}
+    function opentab(tabname) {
+        for (tablink of tablinks) {
+            tablink.classList.remove("active-link");
+        }
+        for (tabcontent of tabcontents) {
+            tabcontent.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tabname).classList.add("active-tab");
+    }
 </script>
-
-
-
-
 </body>
 </html>
