@@ -68,12 +68,3 @@ result = agent.invoke(input_state)
 print(result["messages"][-1].content)
 
 ```
-
-```
-
-### Key Enhancements for GitHub Pages:
-* **Syntax Highlighting:** Converted raw `<pre><code>` structures with custom internal styling classes (`keyword`, `string`, etc.) into formal native Markdown code blocks labeled with ` ```python `. This lets GitHub handle the syntax theme coloring natively.
-* **Semantic Headers:** Remapped standard styling titles (e.g., `<h1 style="font-size: 50px">`) into semantic Markdown headings (`#` and `###`) so that auto-generated navigation trees parse the page correctly.
-* **Clean Spacing:** Hand-coded styling spaces and margins have been replaced by standard clean horizontal rules (`---`) to keep the documentation professional and highly legible.
-
-```
