@@ -1,8 +1,6 @@
 ```markdown
 # LLM Orchestration with LangChain
 
-[← Back to Portfolio](index.html#works)
-
 LangChain is a powerful open-source framework designed to simplify the construction of applications powered by Large Language Models (LLMs). By providing unified abstractions for components like prompt templates, memory, and model initializers, it enables developers to rapidly build context-aware, reasoning applications. Below are standard modern implementations for initializing underlying models and setting up autonomous tool-calling agents.
 
 ---
@@ -17,7 +15,8 @@ from langchain_core.messages import HumanMessage
 
 # 1. Initialize the chat model using the standard unified interface
 model = init_chat_model(
-    model="openai:gpt-5.5-nano",
+    model="gpt-5.4-nano",
+    model_provider="openai",
     temperature=0.2,
     max_tokens=1000
 )
@@ -54,7 +53,8 @@ tools = [calculate_safety_stock]
 
 # 2. Construct the agent with its foundational model, system behavior, and tools
 agent = create_agent(
-    model="openai:gpt-5.5-nano",
+    model="gpt-5.4-nano",
+    model_provider="openai",
     tools=tools,
     system_prompt="You are an operations intelligence assistant. Use your tools to evaluate metric inputs."
 )
