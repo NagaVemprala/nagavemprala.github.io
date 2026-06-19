@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM Applications - LangChain</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/e05271ed15.js" crossorigin="anonymous"></script>
+    <style>
+        /* Specific page styling keeping consistency with your portfolio */
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #FF7A59;
+            text-decoration: none;
+            font-size: 18px;
+            font-family: Arial, sans-serif;
+        }
+        .back-btn i {
+            margin-right: 8px;
+        }
+        .project-desc {
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            color: #ababab;
+        }
+        .code-section {
+            background: #262626;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .code-section h2 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        .code-section p {
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            color: #ababab;
+            margin-bottom: 15px;
+        }
+        pre {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 6px;
+            overflow-x: auto;
+            border: 1px solid #333;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            color: #f8f8f2;
+        }
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .comment { color: #6272a4; }
+        .function { color: #50fa7b; }
+    </style>
+</head>
+<body>
+
+<div id="portfolio-item" style="padding: 80px 0;">
+    <div class="container">
+        <!-- Back Button to Home -->
+        <a href="index.html#works" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Portfolio</a>
+        
+        <h1 class="sub-title" style="font-size: 50px; margin-bottom: 20px;">LLM Orchestration with LangChain</h1>
+        
+        <!-- Introduction -->
+        <p class="project-desc">
+            LangChain is a powerful open-source framework designed to simplify the construction of applications powered by Large Language Models (LLMs). By providing unified abstractions for components like prompt templates, memory, and model initializers, it enables developers to rapidly build context-aware, reasoning applications. Below are standard modern implementations for initializing underlying models and setting up autonomous tool-calling agents.
+        </p>
+
+        <!-- Method 1: init_chat_model -->
+        <div class="code-section">
+            <h2>1. Using <code>init_chat_model</code> with OpenAI 5.5 Nano</h2>
+            <p>The standard modern method to initialize a language model uses <code>init_chat_model</code>. This structural wrapper handles provider-agnostic initialization, allowing you to quickly swap models at runtime via standard application configuration.</p>
+            <pre><code><span class="keyword">from</span> langchain.chat_models <span class="keyword">import</span> init_chat_model
+<span class="keyword">from</span> langchain_core.messages <span class="keyword">import</span> HumanMessage
+
+<span class="comment"># 1. Initialize the chat model using the standard unified interface</span>
+model = init_chat_model(
+    model=<span class="string">"openai:gpt-5.5-nano"</span>,
+    temperature=<span class="keyword">0.2</span>,
+    max_tokens=<span class="keyword">1000</span>
+)
+
+<span class="comment"># 2. Invoke the model directly using a message list</span>
+messages = [
+    HumanMessage(content=<span class="string">"Explain the operational advantage of an optimized RAG system."</span>)
+]
+
+response = model.invoke(messages)
+print(response.content)</code></pre>
+        </div>
+
+        <!-- Method 2: create_agent -->
+        <div class="code-section">
+            <h2>2. Building an Agent via <code>create_agent</code></h2>
+            <p>Agents leverage an LLM as a core execution engine to determine an analytical plan and select external tools dynamically. The <code>create_agent</code> harness wraps the model with runtime middleware, tools, and instructions to process multi-turn workflows.</p>
+            <pre><code><span class="keyword">from</span> langchain.agents <span class="keyword">import</span> create_agent
+<span class="keyword">from</span> langchain_core.tools <span class="keyword">import</span> tool
+
+<span class="comment"># 1. Define custom analytical tools for the agent harness</span>
+<span class="keyword">@tool</span>
+<span class="keyword">def</span> <span class="function">calculate_safety_stock</span>(lead_time_days: int, demand_std_dev: float) -> float:
+    <span class="comment">"""Calculates safety stock level required given standard deviation and lead time."""</span>
+    <span class="keyword">import</span> math
+    z_score = <span class="keyword">1.65</span> <span class="comment"># 95% service level standard</span>
+    <span class="keyword">return</span> round(z_score * demand_std_dev * math.sqrt(lead_time_days), <span class="keyword">2</span>)
+
+tools = [calculate_safety_stock]
+
+<span class="comment"># 2. Construct the agent with its foundational model, system behavior, and tools</span>
+agent = create_agent(
+    model=<span class="string">"openai:gpt-5.5-nano"</span>,
+    tools=tools,
+    system_prompt=<span class="string">"You are an operations intelligence assistant. Use your tools to evaluate metric inputs."</span>
+)
+
+<span class="comment"># 3. Invoke the agent execution path with a target inquiry</span>
+input_state = {
+    <span class="string">"messages"</span>: [<span class="string">"Calculate our safety stock if lead time is 9 days and demand standard deviation is 15 units."</span>]
+}
+
+result = agent.invoke(input_state)
+print(result[<span class="string">"messages"</span>][-1].content)</code></pre>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
